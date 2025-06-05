@@ -1,0 +1,22 @@
+/* src/components/Button.css */
+
+.custom-button {
+  border: none;
+  width: 90%; /* Ocupa 90% da largura do container pai */
+  max-width: 400px; /* Mas não passa de 400px de largura */
+  
+  /* Altura e fonte relativas à altura da tela */
+  height: 9vh;
+  font-size: clamp(16px, 3.5vh, 28px); /* Fonte adaptativa com mínimo e máximo */
+
+  font-family: 'Kdam Thmor Pro', sans-serif;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.3s ease;
+  padding: 0 15px;
+  text-align: center;
+  
+  clip-path: polygon(5% 0, 100% 0, 95% 100%, 0% 100%);
+}

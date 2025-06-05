@@ -1,0 +1,16 @@
+/* src/scenes/MenuScene.css */
+.menu-scene {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.title {
+  font-size: clamp(3rem, 12vh, 5rem); /* Fonte adaptativa */
+  margin-bottom: 1vh;
+  max-width: 90%;
+  text-align: center;
+}

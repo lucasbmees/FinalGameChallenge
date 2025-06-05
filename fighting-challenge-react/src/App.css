@@ -1,0 +1,71 @@
+/* src/App.css */
+@import url('https://fonts.googleapis.com/css2?family=Kdam+Thmor+Pro&display=swap');
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Kdam Thmor Pro', sans-serif;
+  color: #f1f5f9;
+}
+
+/* Container principal da aplicação */
+.app-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* Revertemos para 'center' para um bom alinhamento em tela cheia */
+  justify-content: center;
+  /* Força a altura a ser 100% da tela */
+  height: 100vh;
+  text-align: center;
+  transition: background-color 0.5s ease;
+  /* Esconde qualquer conteúdo que exceda a tela e impede a rolagem */
+  overflow: hidden;
+  padding: 2vh 0; /* Espaçamento relativo à altura da tela */
+  box-sizing: border-box;
+}
+
+/* Container para cada cena */
+.scene-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+/* Título principal das cenas com tamanho de fonte responsivo */
+.scene-title {
+  font-size: clamp(3rem, 12vh, 6rem); /* Fonte adaptativa */
+  margin-bottom: 1vh;
+  max-width: 90%;
+}
+
+/* Linha de sublinhado do título no menu */
+.title-underline {
+  width: 600px;
+  max-width: 80%;
+  height: 5px;
+  margin-top: -20px;
+  margin-bottom: 5vh; /* Espaçamento relativo */
+}
+
+/* Container para os botões com espaçamento relativo */
+.button-container {
+  display: flex;
+  flex-direction: column;
+  gap: 2.5vh; /* Espaçamento relativo à altura da tela */
+  align-items: center;
+  width: 100%;
+}
+
+/* Textos genéricos para cenas simples */
+.info-text {
+  font-size: 2rem;
+}
+
+.sub-text {
+  font-size: 1.25rem;
+  margin-top: 20px;
+}
