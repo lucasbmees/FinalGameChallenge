@@ -5,7 +5,7 @@ import ConfigScene from './scenes/ConfigScene';
 import AboutScene from './scenes/AboutScene';
 import ExitScene from './scenes/ExitScene';
 import GameMenuScene from './scenes/GameMenuScene';
-import OpenWorldScene from './scenes/OpenWorldScene';
+import TrainingScene from './scenes/TrainingScene'; 
 import CharacterSelectionScene from './scenes/CharacterSelectionScene';
 import CombatScene from './scenes/CombatScene';
 import './App.css';
@@ -14,17 +14,25 @@ const SceneManager = () => {
   const [scene, setScene] = useState('menu');
   const { theme } = useContext(ThemeContext);
 
-  // A função 'setScene' substitui a 'mudarCena()'
+  const [player1, setPlayer1] = useState(null);
+  const [player2, setPlayer2] = useState(null);
+
+  const startCombat = (p1, p2) => {
+    setPlayer1(p1);
+    setPlayer2(p2);
+    setScene('combat');
+  };
+
   const renderScene = () => {
     switch (scene) {
       case 'gameMenu':
         return <GameMenuScene changeScene={setScene} />;
-      case 'openWorld':
-        return <OpenWorldScene changeScene={setScene} />;
+      case 'training': 
+        return <TrainingScene changeScene={setScene} />;
       case 'characterSelection':
-        return <CharacterSelectionScene changeScene={setScene} />;
+        return <CharacterSelectionScene onCombatStart={startCombat} changeScene={setScene} />;
       case 'combat':
-        return <CombatScene changeScene={setScene} />;
+        return <CombatScene player1Key={player1} botKey={player2} changeScene={setScene} />;
       case 'config':
         return <ConfigScene changeScene={setScene} />;
       case 'about':

@@ -1,17 +1,15 @@
-// src/scenes/CharacterSelectionScene.jsx
-
 import React, { useState, useContext } from 'react';
 import { ThemeContext } from '../contexts/ThemeContext';
 import Button from '../components/Button';
 import './CharacterSelectionScene.css';
 import './../App.css';
 
-const CharacterSelectionScene = ({ changeScene }) => {
+const CharacterSelectionScene = ({ changeScene, onCombatStart }) => {
   const { themes } = useContext(ThemeContext);
   const [player1, setPlayer1] = useState(null);
   const [player2, setPlayer2] = useState(null);
   const [currentPlayer, setCurrentPlayer] = useState(1);
-  const [hoveredCharacter, setHoveredCharacter] = useState(null); // NOVO: Estado para controlar o hover
+  const [hoveredCharacter, setHoveredCharacter] = useState(null);
 
   const characters = Object.keys(themes).filter(key => key !== 'padrao').map(key => ({
       key,
@@ -28,6 +26,7 @@ const CharacterSelectionScene = ({ changeScene }) => {
       setCurrentPlayer(2);
     } else {
       setPlayer2(characterKey);
+      setCurrentPlayer(null); 
     }
   };
 
@@ -38,6 +37,8 @@ const CharacterSelectionScene = ({ changeScene }) => {
     if (selectedKey) {
         return `${playerName}: ${themes[selectedKey].nome}`;
     }
+    if(playerNumber === 2) return `${playerName} (BOT): ESCOLHA...`;
+
     return `${playerName}: ESCOLHA...`;
   };
 
@@ -69,12 +70,10 @@ const CharacterSelectionScene = ({ changeScene }) => {
           <div
             key={char.key}
             className={`character-card ${player1 === char.key || player2 === char.key ? 'selected' : ''}`}
-            // ALTERADO: A imagem de fundo agora muda com base no estado de hover
             style={{ 
               backgroundImage: `url(${hoveredCharacter === char.key ? char.imageSelected : char.image})` 
             }}
             onClick={() => handleSelectCharacter(char.key)}
-            // NOVO: Eventos para atualizar o estado de hover
             onMouseEnter={() => setHoveredCharacter(char.key)}
             onMouseLeave={() => setHoveredCharacter(null)}
           >
@@ -90,7 +89,7 @@ const CharacterSelectionScene = ({ changeScene }) => {
       <div className="navigation-buttons">
         <Button onClick={() => changeScene('gameMenu')}>VOLTAR</Button>
         {player1 && player2 && (
-          <Button onClick={() => changeScene('combat')}>LUTAR!</Button>
+          <Button onClick={() => onCombatStart(player1, player2)}>LUTAR!</Button>
         )}
       </div>
     </div>

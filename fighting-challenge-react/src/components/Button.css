@@ -1,22 +1,31 @@
-/* src/components/Button.css */
 
 .custom-button {
   border: none;
-  width: 90%; /* Ocupa 90% da largura do container pai */
-  max-width: 400px; /* Mas não passa de 400px de largura */
-  
-  /* Altura e fonte relativas à altura da tela */
+  width: 90%;
+  max-width: 400px;
   height: 9vh;
-  font-size: clamp(16px, 3.5vh, 28px); /* Fonte adaptativa com mínimo e máximo */
-
+  font-size: clamp(16px, 3.5vh, 28px);
   font-family: 'Kdam Thmor Pro', sans-serif;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: background-color 0.3s ease;
   padding: 0 15px;
   text-align: center;
-  
-  clip-path: polygon(5% 0, 100% 0, 95% 100%, 0% 100%);
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  background-size: 200% auto;
+  transition: all 0.4s ease-in-out;
+  transform: translateY(0);
+}
+
+.custom-button:hover:not([disabled]) {
+  background-position: right center;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+  transform: translateY(-2px);
+}
+
+.custom-button:active:not([disabled]) {
+  transform: translateY(0);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
 }

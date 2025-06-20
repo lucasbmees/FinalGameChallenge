@@ -1,8 +1,6 @@
-// src/contexts/ThemeContext.jsx
-
 import React, { createContext, useState, useMemo } from 'react';
 
-const themes = {
+export const themes = {
   padrao: {
     nome: "Hunter x Hunter",
     fundo: '#0a1a24',
@@ -54,7 +52,6 @@ const themes = {
     botaoHover: '#4e6ab3',
     botaoTexto: '#fefce8',
     image: 'https://wallpapers.com/images/hd/hxh-pfp-1200-x-1200-454uuie77rq43h7a.jpg',
-    // ALTERADO: Novo link para a imagem de hover/seleção
     imageSelected: 'https://wallpapers.com/images/hd/shocked-kurapika-pfp-w4txpmh7czlr62el.jpg'
   }
 };
