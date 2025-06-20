@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Button from '../components/Button';
 import { CHARACTERS } from '../gameData/characters';
 import './TrainingScene.css'; 
@@ -21,8 +21,15 @@ const InteractionModal = ({ characterKey, onClose }) => {
     const characterData = CHARACTERS[characterKey];
     const [stats, setStats] = useState(getCharacterStats(characterKey));
     const [dialogue, setDialogue] = useState('O que vamos fazer?');
+    const [fishCount, setFishCount] = useState(0);
+
+    useEffect(() => {
+        const savedFishes = JSON.parse(localStorage.getItem('fishStash')) || 0;
+        setFishCount(savedFishes);
+    }, []);
 
     const xpToNextLevel = stats.level * 100;
+    const fatigueRecovered = 30; // Pontos de fadiga recuperados por peixe
 
     const handleTalk = () => {
         const dialogues = characterData.dialogues || ["..."];
@@ -58,6 +65,29 @@ const InteractionModal = ({ characterKey, onClose }) => {
         setStats(newStats);
         saveCharacterStats(characterKey, newStats);
     };
+    
+    const handleFeed = () => {
+        if (fishCount <= 0) {
+            setDialogue("Não temos peixes para comer...");
+            return;
+        }
+
+        const newFatigue = Math.max(0, stats.fatigue - fatigueRecovered);
+
+        const newStats = {
+            ...stats,
+            fatigue: newFatigue,
+        };
+        
+        const newFishCount = fishCount - 1;
+        setStats(newStats);
+        saveCharacterStats(characterKey, newStats);
+        
+        setFishCount(newFishCount);
+        localStorage.setItem('fishStash', JSON.stringify(newFishCount));
+        
+        setDialogue(`Hmm, que delícia! Recuperei ${fatigueRecovered} de fôlego.`);
+    };
 
     return (
         <div className="interaction-modal-overlay" onClick={onClose}>
@@ -80,6 +110,9 @@ const InteractionModal = ({ characterKey, onClose }) => {
                 <div className="modal-actions">
                     <Button onClick={handleTalk}>CONVERSAR</Button>
                     <Button onClick={handleTrain} disabled={stats.fatigue >= 100}>TREINAR (+25 XP)</Button>
+                    <Button onClick={handleFeed} disabled={fishCount <= 0 || stats.fatigue === 0}>
+                        ALIMENTAR (-{fatigueRecovered} FADIGA) ({fishCount} PEIXES)
+                    </Button>
                     <Button onClick={onClose}>FECHAR</Button>
                 </div>
             </div>

@@ -8,8 +8,8 @@ const GameMenuScene = ({ changeScene }) => {
       <h1 className="scene-title">MODO DE JOGO</h1>
       <div className="button-container">
         <Button onClick={() => changeScene('characterSelection')}>MODO COMBATE</Button>
-        {/* A linha abaixo foi alterada */}
         <Button onClick={() => changeScene('training')}>MODO TREINO</Button>
+        <Button onClick={() => changeScene('fishing')}>MODO PESCA</Button>
       </div>
       <div style={{ marginTop: '60px' }}>
         <Button onClick={() => changeScene('menu')}>VOLTAR AO MENU</Button>

@@ -8,6 +8,7 @@ import GameMenuScene from './scenes/GameMenuScene';
 import TrainingScene from './scenes/TrainingScene'; 
 import CharacterSelectionScene from './scenes/CharacterSelectionScene';
 import CombatScene from './scenes/CombatScene';
+import FishingScene from './scenes/FishingScene';
 import './App.css';
 
 const SceneManager = () => {
@@ -31,6 +32,8 @@ const SceneManager = () => {
         return <TrainingScene changeScene={setScene} />;
       case 'characterSelection':
         return <CharacterSelectionScene onCombatStart={startCombat} changeScene={setScene} />;
+      case 'fishing': 
+        return <FishingScene changeScene={setScene} />;
       case 'combat':
         return <CombatScene player1Key={player1} botKey={player2} changeScene={setScene} />;
       case 'config':
