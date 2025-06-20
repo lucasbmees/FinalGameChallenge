@@ -1,6 +1,7 @@
 # ⚔️ Hunter's Arena: The Nen Challenge
 
 Bem-vindo ao Hunter's Arena, um jogo de luta por turnos feito com React e inspirado no universo de Hunter x Hunter!
+Estudante: Lucas Borinelli Mees
 ---
 
 ### 🎬 Vídeo de Apresentação
