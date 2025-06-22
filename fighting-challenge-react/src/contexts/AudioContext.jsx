@@ -1,6 +1,6 @@
 import React, { createContext, useState, useRef, useEffect, useCallback, useContext } from 'react';
 
-const MUSIC_FILE_URL = '/background-music.mp3'; // Verifique se o nome do seu arquivo está correto aqui
+const MUSIC_FILE_URL = '/background-music.mp3'; 
 
 export const AudioContext = createContext(null);
 
