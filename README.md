@@ -6,7 +6,6 @@ Estudante: Lucas Borinelli Mees
 ---
 
 ### 🎬 Vídeo de Apresentação
-**Confira o vídeo explicando o projeto e a jogabilidade:**
 --
 Apresentação do código: https://youtu.be/TX3BD9rlgcE
 --
